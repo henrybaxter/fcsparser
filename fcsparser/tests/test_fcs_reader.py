@@ -36,7 +36,8 @@ ADDITIONAL_FILE_MAPPING = {
                                     'SG_2014-09-26_Duplicate_Names.fcs'),
     'corrupted_file': os.path.join(BASE_PATH, 'corrupted', 'corrupted.fcs'),
     'test_channel_naming': os.path.join(BASE_PATH, 'MiltenyiBiotec', 'FCS3.1',
-                                        'EY_2013-07-19_PBS_FCS_3.1_Well_A1.001.fcs')
+                                        'EY_2013-07-19_PBS_FCS_3.1_Well_A1.001.fcs'),
+    'melina': os.path.join(BASE_PATH, 'melina', '14-Allergic.fcs')
 }
 
 
@@ -281,6 +282,10 @@ class TestFCSReader(unittest.TestCase):
 
         print('Loading fcs file {0} times both meta and data but without reformatting of '
               'meta takes {1} per loop'.format(time / number, number))
+
+    def test_reading_melinas_fcs_file(file):
+        file_path = ADDITIONAL_FILE_MAPPING['melina']
+        parse_fcs(file_path)
 
     def test_reading_corrupted_fcs_file(self):
         """Raise exception when reading a corrupted fcs file."""

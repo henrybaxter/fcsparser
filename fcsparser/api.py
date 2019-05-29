@@ -245,7 +245,10 @@ class FCSParser(object):
                            u'characters will be ignored.\n{}'.format(e))
             raw_text = raw_text.decode(self._encoding, errors='ignore')
 
-        text = self._extract_text_dict(raw_text)
+        try:
+            text = self._extract_text_dict(raw_text)
+        except ParserFeatureNotImplementedError:
+            text = self._extract_text_dict(raw_text[:-1])
 
         ##
         # Extract channel names and convert some of the channel properties
